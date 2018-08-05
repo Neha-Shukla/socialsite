@@ -1,6 +1,5 @@
 <?php
 include("connection.php");
-error_reporting(0);
     if(isset($_POST['submit']))
     {
         $name = $_POST['t1'];
@@ -40,8 +39,14 @@ error_reporting(0);
 
         <INPUT TYPE="DATE" NAME="t4" VALUE=""><BR>
 
-<br><br>
+<br>
         <input type="submit" name="submit" value="SIGN UP">
+    <br><br>
+</form>
+<H3>
+    IF ALREADY A MEMBER:<BR>
+</H3>
+    <input type="button" value="LOGIN" onclick="window.location.href='login1.php'">
 
 </form>
 

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('header.php');
 include('connection.php');
 echo "<br>";
@@ -40,7 +41,7 @@ if (isset($_POST['submit'])) {
 <form action="" method="post">
     <h3>OLD PASSWORD</h3><input type="password" NAME="p1"><BR><BR>
     <h3>NEW PASSWORD</h3><input type="PASSWORD" NAME="p2"><br><br>
-    <h3>REPEAT_NEW_PASSWORD</h3><input type="PASSWORD" NAME="p3"><br><br>
+    <h3>REPEAT NEW PASSWORD</h3><input type="PASSWORD" NAME="p3"><br><br>
     <input type="submit" name="submit" value="CHANGE PASSWORD">
 </form>
 </body>

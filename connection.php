@@ -2,7 +2,7 @@
 $servername="localhost";
 $username="root";
 $password="";
-$dbname="nehu";
+$dbname="socialsite";
 $conn=mysqli_connect($servername,$username,$password,$dbname);
 if($conn)
 {

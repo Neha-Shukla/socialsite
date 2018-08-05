@@ -1,9 +1,10 @@
 <?php
-include('header.php');
 include('connection.php');
-
+session_start();
+include('header.php');
+$id=$_SESSION['userid'];
 echo
-"<h3>COMPOSE</h3>
+"<br><br>"."<center>"."<h1>COMPOSE</h1>
 <BR>
 <FORM NAME='F1' METHOD='POST' ACTION=''>
     <INPUT TYPE='TEXT' NAME='compose' value=''>
@@ -12,10 +13,10 @@ echo
     <br><br>
     <input type='submit' name='send' value='SEND'>
     
-</FORM>";
+</FORM>"."</center>";
 if(isset($_POST['send']))
 {
-$id=$_SESSION['userid'];
+
 $emailid=$_POST['to'];
 $message=$_POST['compose'];
 $query="select * from records where email_id='$emailid'";
@@ -23,14 +24,14 @@ $result=mysqli_query($conn,$query);
 $data=mysqli_fetch_assoc($result);
 if($result)
 {
-    $fid = $data['id'];
+    $fid = $data['ID'];
     $query1 = "insert into messages values('','$id','$fid','$message',NOW())";
     $result1 = mysqli_query($conn, $query1);
     if ($result1)
     {
         echo "TO:<BR>".$emailid;
         echo "<br";
-            echo $message;
+            echo $_POST['compose'];
     }
         else
             {
@@ -42,4 +43,7 @@ else
     echo mysqli_error($conn);
 }
 }
+echo "<hr><hr>";
+echo "<h2>INBOX</h2>";
+include('inbox.php');
 ?>

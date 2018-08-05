@@ -2,7 +2,7 @@
 <head>
     <title>sign in system</title>
 </head>
-<body background="active.jpg">
+<body background="alone1.jpg">
 <br><br><br><center><h1> LOG IN </h1></center><br><br><br>
 <form name="f1" method="POST" action="">
     <center>
@@ -11,6 +11,9 @@
         <i><h3>ENTER PASSWORD:</h3></i>
         <input type="password" name="t2" value=""><br><br><br>
         <input type="submit" name="submit" value="SIGN IN">
+       <H3> NOT A MEMBER:</H3><BR>
+            <input type="button" name="submit1" value="SIGNUP" onclick="window.location.href='signup.php'"/>
+
     </center>
 </form>
 
@@ -18,7 +21,7 @@
 </body>
 </html>
 <?php
-//include connection file in starting so it is easy to understand and debug
+
 include("connection.php");
 if(isset($_POST['submit'])) {
     $error = "username or password is invalid";
@@ -31,23 +34,19 @@ echo $error;
         $p = $_POST['t2'];
         $query = "SELECT * from records where email_id='$e' and password='$p'";
         $result = mysqli_query($conn, $query);
-        //this will show any error if query doesn't work
-        echo mysqli_error($conn);
-        $rows = mysqli_num_rows($result);
-
-        if ($rows == 1) {
-            //always start the session after credintials have been checked
+       $data=mysqli_fetch_assoc($result);
+        if ($result)
+			{
             session_start();
             $_SESSION['email'] = $e;
-            $data=mysqli_fetch_assoc($result);
             $username=$data["NAME"];
             $_SESSION['NAME']=$username;
-            $userid=$data["id"];
+            $userid=$data["ID"];
             $_SESSION['userid']=$userid;
             $_SESSION['password']=$p;
-            $_SESSION['dob']=$data['dob'];
+            $_SESSION['dob']=$data['DOB'];
 
-            //error was in this statement we don't write location=: we only write location:
+           
             header("location:firstpage.php");
         } else {
             echo $error;
@@ -55,4 +54,6 @@ echo $error;
         mysqli_close($conn);
     }
 }
+
+
 ?>
